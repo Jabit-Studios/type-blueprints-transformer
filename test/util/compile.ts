@@ -41,6 +41,5 @@ function createProgram(source: string, fileName = 'test.ts'): ts.Program {
 
 export function compile(fileName: string): string {
 	const file = readFileSync(fileName, "utf-8");
-	console.log(file);
 	return transformSource(file, fileName);
 }

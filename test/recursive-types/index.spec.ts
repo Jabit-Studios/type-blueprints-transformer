@@ -1,4 +1,3 @@
-import { readFileSync } from "fs";
 import { it, describe, expect } from "vitest";
 import { compile } from "../util";
 

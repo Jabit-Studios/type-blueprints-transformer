@@ -21,7 +21,7 @@
     "test:watch": "vitest --watch"
   },
   "keywords": [],
-  "types": "out/index.d.ts",
+  "types": "index.d.ts",
   "files": [
     "out"
   ],

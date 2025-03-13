@@ -4,7 +4,7 @@
         "rootDir": "src",
 
         "outDir": "out",
-        "declaration": true,
+        "declaration": false,
     },
     "exclude": ["test/**/*"]
 }

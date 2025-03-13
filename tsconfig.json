@@ -2,14 +2,14 @@
 	"compilerOptions": {
 		"target": "ES5",
 		"module": "commonjs",
-		"rootDirs": ["src", "test"],
 
 		"strict": true,
 		"downlevelIteration": true,
 
 		"esModuleInterop": true,
 		"skipDefaultLibCheck": true,
+		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 	},
-	"include": ["src/**/*.ts", "test/**/*.ts"],
+	"include": ["src/**/*.ts", "test/**/*.ts", "index.d.ts"],
 }

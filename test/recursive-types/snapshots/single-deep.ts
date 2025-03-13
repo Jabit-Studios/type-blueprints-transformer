@@ -1,3 +1,5 @@
+import { $stamp } from "../../..";
+
 interface SingleDeep {
 	a: SingleDeep;
 }

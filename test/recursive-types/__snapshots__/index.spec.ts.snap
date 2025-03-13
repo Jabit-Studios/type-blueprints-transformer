@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Recursive Types > should allow for one level deep recursion 1`] = `
+";
+import { $terrify } from "./test";
+interface SingleDeep {
+    a: SingleDeep;
+}
+const singleDeep = $stamp<SingleDeep>();
+"
+`;

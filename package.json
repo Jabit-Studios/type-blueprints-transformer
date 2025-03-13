@@ -37,8 +37,10 @@
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-roblox-ts": "^0.0.36",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.2",
     "vitest": "^3.0.8"
+  },
+  "dependencies": {
+    "typescript": "*"
   },
   "peerDependencies": {
     "typescript": "*"

@@ -12,13 +12,12 @@
 	],
 	"plugins": [
 		"@typescript-eslint",
-		"roblox-ts",
 		"prettier"
 	],
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:roblox-ts/recommended",
+		"prettier/@typescript-eslint",
 		"plugin:prettier/recommended"
 	],
 	"rules": {

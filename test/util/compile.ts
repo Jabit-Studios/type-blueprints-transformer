@@ -36,10 +36,10 @@ function createProgram(source: string, fileName = 'test.ts'): ts.Program {
 
 	const { transformed } = ts.transform(sourceFile, [transform]);
 	const printer = ts.createPrinter();
-	return printer.printFile(transformed[0] as ts.SourceFile);
+	return printer.printFile(transformed[0]);
   }
 
-export function compile(fileName: string): string {
+export function compileFromFile(fileName: string): string {
 	const file = readFileSync(fileName, "utf-8");
 	return transformSource(file, fileName);
 }

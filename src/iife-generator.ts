@@ -22,7 +22,7 @@ export function generateIIFEExpressionFromType(
       return ts.factory.createStringLiteral("boolean");
     }
     if ((t.flags & ts.TypeFlags.Undefined) || (t.flags & ts.TypeFlags.Null)) {
-      return ts.factory.createNull();
+      return ts.factory.createStringLiteral("null");
     }
 
     // Handle arrays.
@@ -80,7 +80,7 @@ export function generateIIFEExpressionFromType(
           ts.factory.createVariableDeclaration(
             varIdentifier,
             undefined,
-            undefined,
+            ts.factory.createTypeReferenceNode("any"),
             ts.factory.createObjectLiteralExpression([], true)
           ),
         ],

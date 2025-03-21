@@ -16,9 +16,15 @@ function visitNodeAndChildren(node: ts.Node, program: ts.Program, context: ts.Tr
 	return ts.visitEachChild(visitNode(node, program), (childNode) => visitNodeAndChildren(childNode, program, context), context);
 }
 
+let previousSourceFile: ts.SourceFile;
+
 function visitNode(node: ts.SourceFile, program: ts.Program): ts.SourceFile;
 function visitNode(node: ts.Node, program: ts.Program): ts.Node | undefined;
 function visitNode(node: ts.Node, program: ts.Program): ts.VisitResult<ts.Node> | undefined {
+	if (ts.isSourceFile(node)) {
+		previousSourceFile = node;
+	}
+
 	// If the node is an import declaration, check if it's related to the module we export
 	// if it is, return an empty statement to remove it
 	if (isModuleImportDeclaration(node, program)) return factory.createNotEmittedStatement(node);
@@ -57,7 +63,7 @@ function isModuleImportDeclaration(node: ts.Node, program: ts.Program): node is 
 	const namedBindings = node.importClause.namedBindings;
 	if (!node.importClause.name && !namedBindings) return false;
 
-	const source = getImportedSourceFile(node, node.getSourceFile(), program);
+	const source = getImportedSourceFile(node, previousSourceFile, program);
 	if (!source) return true;
 
 	return isModule(source);

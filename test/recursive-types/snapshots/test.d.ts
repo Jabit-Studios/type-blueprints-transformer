@@ -1,1 +1,1 @@
-export function $terrify(): string;
+export function $terrify(obj: any): string;

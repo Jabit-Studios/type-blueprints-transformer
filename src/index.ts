@@ -1,6 +1,8 @@
 import { readFileSync } from "fs";
 import path from "path";
 import ts, { factory } from "typescript";
+import { isFunctionCall } from "./util";
+import { generateIIFEExpressionFromType } from "./iife-generator";
 
 export default function transformer(program: ts.Program): ts.TransformerFactory<ts.SourceFile> {
 	return (ctx: ts.TransformationContext) => (sourceFile: ts.SourceFile) => {
@@ -19,9 +21,12 @@ function visitNode(node: ts.Node, program: ts.Program): ts.Node | undefined;
 function visitNode(node: ts.Node, program: ts.Program): ts.VisitResult<ts.Node> | undefined {
 	// If the node is an import declaration, check if it's related to the module we export
 	// if it is, return an empty statement to remove it
-	if (isModuleImportDeclaration(node, program)) return factory.createEmptyStatement();
+	if (isModuleImportDeclaration(node, program)) return factory.createNotEmittedStatement(node);
+	if (!isFunctionCall(node, "$stamp")) return node;
 
-	return node;
+	const type = program.getTypeChecker().getTypeAtLocation(node);
+	return generateIIFEExpressionFromType(type, program.getTypeChecker());
+
 }
 
 const sourceText = readFileSync(path.join(__dirname, "..", "index.d.ts"), "utf-8");

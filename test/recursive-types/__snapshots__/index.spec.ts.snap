@@ -1,11 +1,86 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Recursive Types > should allow for one level deep recursion 1`] = `
-";
-import { $terrify } from "./test";
+exports[`Recursive Types > should allow for complex recursion > tree-dto.ts 1`] = `
+"interface IVirtualBranchDTO {
+    index: number;
+    depth: number;
+    children: Array<IVirtualBranchDTO> | undefined;
+}
+interface IVirtualTreeInformationDTO {
+    seed?: number;
+    maxDepth: number;
+}
+interface IVirtualTreeDTO extends IVirtualTreeInformationDTO {
+    root: IVirtualBranchDTO;
+}
+const blueprint = (() => {
+    const _obj0 = {};
+    const _obj1 = {};
+    _obj1.index = "number";
+    _obj1.depth = "number";
+    _obj1.children = ["Union", null, ["Array", _obj1]];
+    _obj0.root = _obj1;
+    _obj0.seed = ["Union", null, "number"];
+    _obj0.maxDepth = "number";
+    return _obj0;
+})();
+"
+`;
+
+exports[`Recursive Types > should allow for complex recursion from multiple files > tree-dto-multiple-files.ts 1`] = `
+"import { IVirtualBranchDTO } from "./branch-example";
+interface IVirtualTreeInformationDTO {
+    seed?: number;
+    maxDepth: number;
+}
+interface IVirtualTreeDTO extends IVirtualTreeInformationDTO {
+    root: IVirtualBranchDTO;
+}
+const blueprint = (() => {
+    const _obj0 = {};
+    const _obj1 = {};
+    _obj1.index = "number";
+    _obj1.depth = "number";
+    _obj1.children = ["Union", null, ["Array", _obj1]];
+    _obj0.root = _obj1;
+    _obj0.seed = ["Union", null, "number"];
+    _obj0.maxDepth = "number";
+    return _obj0;
+})();
+"
+`;
+
+exports[`Recursive Types > should allow for one level deep recursion > single-deep.ts 1`] = `
+"import { $terrify } from "./test";
 interface SingleDeep {
     a: SingleDeep;
+    b: number;
 }
-const singleDeep = $stamp<SingleDeep>();
+const singleDeep = (() => {
+    const _obj0 = {};
+    _obj0.a = _obj0;
+    _obj0.b = "number";
+    return _obj0;
+})();
+"
+`;
+
+exports[`Recursive Types > should allow for two levels deep recursion > double-deep.ts 1`] = `
+"interface DoubleDeep {
+    a: DoubleDeep;
+    b: {
+        c: DoubleDeep;
+        d: number;
+    };
+}
+const doubleDeep = (() => {
+    const _obj0 = {};
+    _obj0.a = _obj0;
+    const _obj1 = {};
+    _obj1.c = _obj0;
+    _obj1.d = "number";
+    _obj0.b = _obj1;
+    return _obj0;
+})();
 "
 `;

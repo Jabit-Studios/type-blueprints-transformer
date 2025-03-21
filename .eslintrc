@@ -21,6 +21,21 @@
 		"plugin:prettier/recommended"
 	],
 	"rules": {
-		"prettier/prettier": "warn"
+		"prettier/prettier": "warn",
+		"sort-imports": [
+			"error",
+			{
+				"ignoreCase": false,
+				"ignoreDeclarationSort": true,
+				"ignoreMemberSort": false,
+				"memberSyntaxSortOrder": [
+					"none",
+					"all",
+					"multiple",
+					"singly"
+				],
+				"allowSeparatedGroups": false
+			}
+		]
 	}
 }
